@@ -85,7 +85,7 @@
                 <configuration>
                     <workingDirectory>frontend</workingDirectory>
                     <nodeVersion>v15.0.0</nodeVersion>
-                    <yarnVersion>v1.11.0</yarnVersion>
+<!--                    <yarnVersion>v1.11.0</yarnVersion>-->
 
                     <!-- optional: where to download node from. Defaults to https://nodejs.org/dist/ -->
 <!--                    <nodeDownloadRoot>http://myproxy.example.org/nodejs/</nodeDownloadRoot>-->
@@ -93,20 +93,22 @@
 <!--                    <yarnDownloadRoot>http://myproxy.example.org/yarn/</yarnDownloadRoot>-->
                 </configuration>
                 <executions>
-                        <execution>
-                            <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
-                            <id>install node and yarn</id>
-                            <goals>
-                                <goal>install-node-and-yarn</goal>
-                            </goals>
-                            <!-- optional: default phase is "generate-resources" -->
-                            <phase>generate-resources</phase>
-                        </execution>
-
                     <execution>
-                        <id>yarn build</id>
+                        <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
+                        <id>install node and npm</id>
                         <goals>
-                            <goal>yarn</goal>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <!-- optional: default phase is "generate-resources" -->
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm build</id>
+                        <goals>
+                            <goal>npm</goal>
                         </goals>
                         <phase>compile</phase>
                         <configuration>
