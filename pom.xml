@@ -15,6 +15,9 @@
     <description>An Inventory tracking Web application (Demo Project for Shopify Backend Developer Intern Challenge).
     </description>
     <properties>
+        <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
+        <node.version>v16.9.0</node.version>
+        <yarn.version>v1.2.10</yarn.version>
         <java.version>11</java.version>
     </properties>
     <dependencies>
@@ -53,6 +56,64 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes/static</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>frontend/build</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend-maven-plugin.version}</version>
+                <configuration>
+                    <workingDirectory>frontend</workingDirectory>
+                    <nodeVersion>v15.0.0</nodeVersion>
+                    <yarnVersion>v1.11.0</yarnVersion>
+
+                    <!-- optional: where to download node from. Defaults to https://nodejs.org/dist/ -->
+<!--                    <nodeDownloadRoot>http://myproxy.example.org/nodejs/</nodeDownloadRoot>-->
+                    <!-- optional: where to download yarn from. Defaults to https://github.com/yarnpkg/yarn/releases/download/ -->
+<!--                    <yarnDownloadRoot>http://myproxy.example.org/yarn/</yarnDownloadRoot>-->
+                </configuration>
+                <executions>
+                        <execution>
+                            <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
+                            <id>install node and yarn</id>
+                            <goals>
+                                <goal>install-node-and-yarn</goal>
+                            </goals>
+                            <!-- optional: default phase is "generate-resources" -->
+                            <phase>generate-resources</phase>
+                        </execution>
+
+                    <execution>
+                        <id>yarn build</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
