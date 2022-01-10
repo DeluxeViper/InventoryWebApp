@@ -11,8 +11,9 @@ A full stack Web application for the Shopify Backend Intern Challenge!
 2. Install Maven:<br/>
     1. Go to `maven.apache.org/download.cgi`, download the binary zip archive link and unzip it
     2. Then go to `maven.apache.org/install.html` and follow the rest of the installation setup instructions
-4. Run `mvn spring-boot:run`
-5. Acccess the application on `localhost:8080`!
+4. Open the Terminal to the root folder of this Git Repository 
+5. Run `mvn spring-boot:run`
+6. Acccess the application on `localhost:8080`!
      - You should be able to access all REST endpoints as well as all frontend endpoints through `localhost:8080`
 
 ### REST Documentation
