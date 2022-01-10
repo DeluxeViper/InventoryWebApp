@@ -18,6 +18,6 @@ A full stack Web application for the Shopify Backend Intern Challenge -> Spring 
 
 ### Postman
 
-Here's a collection of postman requests in case you want to test the APIs out yourself! :)
+Here's a collection of postman requests in case you want to test the APIs out yourself!
 
 https://www.getpostman.com/collections/75aa11c779ffd45b7d52
