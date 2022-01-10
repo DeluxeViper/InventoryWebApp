@@ -1,5 +1,5 @@
 # InventoryWebApp
-A full stack Web application for the Shopify Backend Intern Challenge -> Spring Boot backend + React frontend
+A full stack Web application for the Shopify Backend Intern Challenge!
 
 ### Technologies Used
 - Backend: Spring Boot (Java, Maven, XML)
