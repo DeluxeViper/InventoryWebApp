@@ -16,7 +16,7 @@ A full stack Web application for the Shopify Backend Intern Challenge -> Spring 
      - You should be able to access all REST endpoints as well as all frontend endpoints through `localhost:8080`
 
 ### REST Documentation
-- Create Inventory Item: `/api/inventory/`
+- Create Inventory Item: `/api/inventory`
 - Get All Inventory Items: `/api/inventory`
 - Get Inventory Item: `/api/inventory/{id}`
 - Update Inventory Item: `/api/inventory/{id}`
