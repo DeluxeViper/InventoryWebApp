@@ -2,22 +2,33 @@
 A full stack Web application for the Shopify Backend Intern Challenge -> Spring Boot backend + React frontend
 
 ### Technologies Used
-- Backend: Spring Boot
-- Frontend: React
+- Backend: Spring Boot (Java, Maven, XML)
+- Frontend: React (Javascript)
+- Database: H2 (in-memory storage)
 
 ### Set up
-1. Install a Java SDK 11+ 
-2. Install Maven:
-    1  Go to `maven.apache.org/download.cgi`, download the binary zip archive link and unzip it
+1. Install Java 11 (Java versions earlier than 11 don't work, Java versions after 11 such as Java 17 might or might not work)
+2. Install Maven:<br/>
+    1. Go to `maven.apache.org/download.cgi`, download the binary zip archive link and unzip it
     2. Then go to `maven.apache.org/install.html` and follow the rest of the installation setup instructions
 4. Run `mvn spring-boot:run`
 5. Acccess the application on `localhost:8080`!
+     - You should be able to access all REST endpoints as well as all frontend endpoints through `localhost:8080`
 
+### REST Documentation
+- Create Inventory Item: `/api/inventory/items`
+- Get All Inventory Items: `/api/inventory`
+- Get Inventory Item: `/api/inventory/{id}`
+- Update Inventory Item: `/api/inventory/{id}`
+- Delete Inventory Item: `/api/inventory/{id}`
 
-###### Extra feature added: Export data to CSV
-
-### Postman
-
-Here's a collection of postman requests in case you want to test the APIs out yourself! :)
-
+###### Feel free to check out this Postman collection for the REST Endpoints I created here: 
 https://www.getpostman.com/collections/75aa11c779ffd45b7d52
+
+### Extra feature added: Export data to CSV
+
+### Why this application is very Scalable + Modular
+
+When using Spring Boot for the backend, I chose to use an 3-layered architecture pattern. Specifically speaking, I used a data access layer (which consists of the model and repository packages and communicates with the H2 database), the business layer (which includes the service classes), and the presentation layer (which includes the REST controllers). This allows code maintenance to be very organized as well as allows the codebase to be very modular with the separated logic.
+
+
