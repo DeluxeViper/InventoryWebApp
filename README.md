@@ -16,7 +16,7 @@ A full stack Web application for the Shopify Backend Intern Challenge -> Spring 
      - You should be able to access all REST endpoints as well as all frontend endpoints through `localhost:8080`
 
 ### REST Documentation
-- Create Inventory Item: `/api/inventory/items`
+- Create Inventory Item: `/api/inventory/`
 - Get All Inventory Items: `/api/inventory`
 - Get Inventory Item: `/api/inventory/{id}`
 - Update Inventory Item: `/api/inventory/{id}`
@@ -29,6 +29,6 @@ https://www.getpostman.com/collections/75aa11c779ffd45b7d52
 
 ### Why this application is very Scalable + Modular
 
-When using Spring Boot for the backend, I chose to use an 3-layered architecture pattern. Specifically speaking, I used a data access layer (which consists of the model and repository packages and communicates with the H2 database), the business layer (which includes the service classes), and the presentation layer (which includes the REST controllers). This allows code maintenance to be very organized as well as allows the codebase to be very modular with the separated logic.
+When architecting the code for the Spring Boot backend, I chose to use a 3-layered architecture pattern. Specifically speaking, I used a data access layer (which consists of the model and repository packages and communicates with the H2 database), the business layer (which includes the service classes), and the presentation layer (which includes the REST controllers). This allows code maintenance to be very organized as well as allows the codebase to be very modular with the separated logic between layers.
 
 
