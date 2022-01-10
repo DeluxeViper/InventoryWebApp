@@ -33,6 +33,7 @@ const ItemsList = () => {
       <Button color="success" tag={Link} to="/items/new">
         Add Inventory Item
       </Button>
+      <CSVLink data={items}>Export to CSV</CSVLink>
       <Table>
         <thead>
           <tr>
@@ -72,7 +73,6 @@ const ItemsList = () => {
           ))}
         </tbody>
       </Table>
-      <CSVLink data={items}>Export to CSV</CSVLink>
     </div>
   );
 };

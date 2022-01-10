@@ -2,6 +2,7 @@ package com.deluxeviper.InventoryTrackingWebApp.controller;
 
 import com.deluxeviper.InventoryTrackingWebApp.model.InventoryItem;
 import com.deluxeviper.InventoryTrackingWebApp.repository.InventoryRepository;
+import com.deluxeviper.InventoryTrackingWebApp.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ public class InventoryController {
     @Autowired
     InventoryRepository inventoryRepository;
 
+    @Autowired
+    InventoryService inventoryService;
+
     @GetMapping("/hello")
     public String hello() {
         return "Hello there";
@@ -27,7 +31,7 @@ public class InventoryController {
     @GetMapping
     public ResponseEntity<List<InventoryItem>> getAllInventoryItems() {
         try {
-            List<InventoryItem> items = new ArrayList<>(inventoryRepository.findAll());
+            List<InventoryItem> items = new ArrayList<>(inventoryService.getAllInventoryItems());
 
             return new ResponseEntity<>(items, HttpStatus.OK);
         } catch (Exception e) {
@@ -37,7 +41,7 @@ public class InventoryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<InventoryItem> getInventoryItem(@PathVariable("id") Long id) {
-        Optional<InventoryItem> item = inventoryRepository.findById(id);
+        Optional<InventoryItem> item = inventoryService.getInventoryItem(id);
 
         return item.map(inventoryItem -> new ResponseEntity<>(inventoryItem, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -45,7 +49,7 @@ public class InventoryController {
     @PostMapping
     public ResponseEntity<InventoryItem> createInventoryItem(@RequestBody InventoryItem item) {
         try {
-            InventoryItem inventoryItem = inventoryRepository.save(item);
+            InventoryItem inventoryItem = inventoryService.createInventoryItem(item);
             return new ResponseEntity<>(inventoryItem, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -64,25 +68,31 @@ public class InventoryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<InventoryItem> updateInventoryItem(@PathVariable("id") Long id, @RequestBody InventoryItem itemToUpdate) {
-        Optional<InventoryItem> itemOpt = inventoryRepository.findById(id);
+        InventoryItem savedItem = inventoryService.updateInventoryItem(id, itemToUpdate);
 
-        if (itemOpt.isPresent()) {
-            InventoryItem item = itemOpt.get();
-            item.setCreatedAt(itemToUpdate.getCreatedAt());
-            item.setPrice(itemToUpdate.getPrice());
-            item.setProductName(itemToUpdate.getProductName());
-            item.setQuantity(itemToUpdate.getQuantity());
-
-            return new ResponseEntity<>(inventoryRepository.save(item), HttpStatus.OK);
+        if (savedItem != null) {
+            return new ResponseEntity<>(savedItem, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         }
+//        if (itemOpt.isPresent()) {
+//            InventoryItem item = itemOpt.get();
+//            item.setCreatedAt(itemToUpdate.getCreatedAt());
+//            item.setPrice(itemToUpdate.getPrice());
+//            item.setProductName(itemToUpdate.getProductName());
+//            item.setQuantity(itemToUpdate.getQuantity());
+//
+//            return new ResponseEntity<>(inventoryRepository.save(item), HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteInventoryItem(@PathVariable("id") long id) {
         try {
-            inventoryRepository.deleteById(id);
+            inventoryService.deleteInventoryItem(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
