@@ -7,7 +7,7 @@ A full stack Web application for the Shopify Backend Intern Challenge!
 - Database: H2 (in-memory storage)
 
 ### Set up
-1. Install Java 11 (Java versions earlier than 11 don't work, Java versions after 11 such as Java 17 might or might not work)
+1. Install Java 11 (Java versions earlier than 11 don't seem to work, Java versions after 11 such as Java 17 might or might not work without some changes to the pom.xml file)
 2. Install Maven:<br/>
     1. Go to `maven.apache.org/download.cgi`, download the binary zip archive link and unzip it
     2. Then go to `maven.apache.org/install.html` and follow the rest of the installation setup instructions
